@@ -27,32 +27,58 @@ public class SnakeNLadder {
  * UC1 : snake and ladder game played with single player at start position 0
  * UC2 : the player roll the die to get number between 1 to 6
  */
-	public void startGame() {
-		int player1 =0;
-		System.out.println("Start Position Of Player1: "+player1);
+	public void startGame()
+	{
+		int player1 =0, player2=0;
+		int currentPlayer=-1,count=0;
 		Scanner sc = new Scanner(System.in);
 		String str;
-		int diceValue =0,count = 0;
-        do {
-            count ++;        	
-        System.out.println("Press r to roll Dice");
-		str = sc.next();
-		System.out.println("rolls the dice to get number");
-         diceValue=1+(int)Math.floor(Math.random()*6);
-         System.out.println(" number on dice " +diceValue);
-		player1 = calculatePlayerValue(player1,diceValue);
-		System.out.println("First Player :: " + player1);
-		System.out.println("------------------");
-		if(isWin(player1))
+		int diceValue =0;
+		do
 		{
-			System.out.println(" player won");
-		    System.out.println("Player won the game by " + count + " time throwing the dice");
-			return;
-		}
-
-        }while("r".equals(str));
-		}
-/*
+			System.out.println(currentPlayer==-1?"\n\nFIRST PLAYER TURN":"\n\nSECOND PLAYER TURN");
+			System.out.println("Press r to roll Dice");
+			str = sc.next();
+			System.out.println("rolls the dice to get number");
+	         diceValue=1+(int)Math.floor(Math.random()*6);
+	        System.out.println(" number on dice" +diceValue);
+			
+	        if(currentPlayer == -1)
+			{
+	        	count++;
+				player1 = calculatePlayerValue(player1,diceValue);
+				System.out.println("First Player :: " + player1);
+				System.out.println("Second Player :: " + player2);
+				System.out.println("------------------");
+				if(isWin(player1))
+				{
+					System.out.println("First player wins");
+				    System.out.println("Player won the game by " + count + " time throwing the dice");
+					return;
+				}
+			}
+			else
+			{
+				count++;
+				player2 = calculatePlayerValue(player2,diceValue);
+				System.out.println("First Player :: " + player1);
+				System.out.println("Second Player :: " + player2);
+				System.out.println("------------------");
+				if(isWin(player2))
+				{
+					System.out.println("Second player wins");
+				    System.out.println("Player won the game by " + count + " time throwing the dice");
+					return;
+				}
+			}
+			
+			currentPlayer= -currentPlayer;
+			
+			
+			
+		}while("r".equals(str));
+	}
+	/*
  * UC3 : player check for option
  */
 	public int calculatePlayerValue(int player, int diceValue)
