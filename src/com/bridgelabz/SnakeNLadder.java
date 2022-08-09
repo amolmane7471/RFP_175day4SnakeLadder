@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class SnakeNLadder {
-
+	final static int WINPOINT = 100;
 	static Map<Integer,Integer> snake = new HashMap<Integer,Integer>();
 	static Map<Integer,Integer> ladder = new HashMap<Integer,Integer>();
 	
@@ -48,24 +48,32 @@ public class SnakeNLadder {
 /*
  * UC3 : player check for option
  */
-	public int calculatePlayerValue(int player1, int diceValue)
+	public int calculatePlayerValue(int player, int diceValue)
 	{
-		player1 = player1 + diceValue;
+		player = player + diceValue;
+		/*
+		 * UC4 : repeat till the player reaches the winning position 100
+		 */
+			
+			if(player > WINPOINT)
+			{
+			player = player - diceValue;
+			return player;
+			}
 		
-			if(null!=ladder.get(player1))
+			if(null!=ladder.get(player))
 			{
 				System.out.println("climb up the ladder");
-				player1= ladder.get(player1);
+				player= ladder.get(player);
 			}
 
-			if(null!=snake.get(player1))
+			if(null!=snake.get(player))
 			{
 				System.out.println("swallowed by snake");
-				player1= snake.get(player1);
+				player= snake.get(player);
 			}
-			return player1;
+			return player;
 	}
-
 
 public static void main(String[] args) {
 		System.out.println("Welcome To Snake & Ladder");
