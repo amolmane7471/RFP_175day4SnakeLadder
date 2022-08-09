@@ -45,7 +45,7 @@ public class SnakeNLadder {
 		System.out.println("------------------");
 		if(isWin(player1))
 		{
-			System.out.println(" player wins");
+			System.out.println(" player won");
 		    System.out.println("Player won the game by " + count + " time throwing the dice");
 			return;
 		}
