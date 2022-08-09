@@ -32,16 +32,23 @@ public class SnakeNLadder {
 		System.out.println("Start Position Of Player1: "+player1);
 		Scanner sc = new Scanner(System.in);
 		String str;
-		int diceValue =0;
+		int diceValue =0,count = 0;
         do {
+            count ++;        	
         System.out.println("Press r to roll Dice");
 		str = sc.next();
 		System.out.println("rolls the dice to get number");
          diceValue=1+(int)Math.floor(Math.random()*6);
-        System.out.println(" number on dice " +diceValue);
+         System.out.println(" number on dice " +diceValue);
 		player1 = calculatePlayerValue(player1,diceValue);
 		System.out.println("First Player :: " + player1);
 		System.out.println("------------------");
+		if(isWin(player1))
+		{
+			System.out.println(" player wins");
+		    System.out.println("Player won the game by " + count + " time throwing the dice");
+			return;
+		}
 
         }while("r".equals(str));
 		}
@@ -73,6 +80,11 @@ public class SnakeNLadder {
 				player= snake.get(player);
 			}
 			return player;
+	}
+
+	public boolean isWin(int player)
+	{
+		return WINPOINT == player;
 	}
 
 public static void main(String[] args) {
